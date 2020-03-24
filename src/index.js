@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './styles.scss';
 import App from './App';
+import {IntlProvider} from 'react-intl';
 import * as serviceWorker from './serviceWorker';
+import {currentStrings, currentLanguage} from "./services/translation_service";
+import ReactModal from "react-modal";
+
+ReactModal.setAppElement("#root")
 
 ReactDOM.render(
   <React.StrictMode>
+      <IntlProvider locale={currentLanguage()} messages={currentStrings()}>
     <App />
+      </IntlProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
