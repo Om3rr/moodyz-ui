@@ -1,0 +1,26 @@
+.voteboard {
+  height: 100%;
+  width: 100%;
+  &--title {
+
+  }
+  &--body {
+    display: flex;
+    flex-direction: column;
+    .vote-choice {
+      flex: auto;
+      background-color: red;
+      height: 100px;
+      &--body {
+        position: relative;
+        .vote {
+          position: absolute;
+          &::after {
+            content: attr(emoji);
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
