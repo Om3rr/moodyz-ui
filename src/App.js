@@ -8,7 +8,7 @@ function App() {
     getVotes(2).then(votes => console.log(votes));
     return (
         <div className="App" id="main">
-            <ClassPage classId={2}/>
+            <ClassPage classId={1}/>
         </div>
     );
 }
