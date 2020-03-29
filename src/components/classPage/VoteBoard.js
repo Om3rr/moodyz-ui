@@ -2,27 +2,22 @@ import React from 'react';
 import {compose, lifecycle, withState} from 'recompose'
 import Vote from "./VoteBoard/Vote";
 
-const VoteBoard = ({votes, choices}) => {
+const VoteBoard = ({students, choices}) => {
+    const facesMap = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "a", "b", "c", "d", "e", "f", "g", "h", "i"];
     return (
         <div className="voteboard">
             <div className="body">
                 {
-                    votes ? votes.map((vote, idx) => (
-                        <Vote key={idx} choice={choices.find(c => c.id === vote.choice)}/>
-                    )) : null
-                }
-                {
-                    votes ? votes.map((vote, idx) => (
-                        <Vote key={idx} choice={choices.find(c => c.id === vote.choice)}/>
+                    students ? students.map((student, idx) => (
+                        <Vote key={idx} picture={student.face_url}
+                              choice={student.vote.choice}
+                              choices={choices}/>
                     )) : null
                 }
             </div>
         </div>
     )
 }
-
-
-
 
 
 const enhance = compose(

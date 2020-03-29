@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-const ClassPageHeader = () => {
+const ClassPageHeader = ({student}) => {
     return (
         <div className={"header"}>
             <div className={"header--body"}>
-                Header
+                היי {student.name}! איך אתה מרגיש היום?
             </div>
         </div>
     )

@@ -1,14 +1,17 @@
 
-html, body, #root, .App, .classPage{
-        height:100%;
-    }
+html, body, #root, .App, .classPage {
+  height: 100%;
+  overflow: hidden;
+}
 
 .classPage {
   display: flex;
   flex-direction: column;
+
   .header, .footer {
     flex: 0 0 auto;
   }
+
   .voteboard {
     flex: 1 1 0;
     height: 80%;
@@ -16,29 +19,60 @@ html, body, #root, .App, .classPage{
   }
 }
 
+
+.footer {
+  overflow-y: scroll;
+
+  &:before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 3em;
+    background: linear-gradient(90deg, #516e8a, transparent);
+    left: 0;
+    z-index: -1;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 3em;
+    right: 0;
+    background: linear-gradient(270deg, #516e8a, transparent);
+    z-index: -1;
+  }
+}
+
 .header {
   display: block;
   width: 100%;
   bottom: 0;
+  margin-bottom: 14em;
+
   &--body {
-    font-size: 20em;
+    font-size: 17em;
+    color: white;
     text-align: center;
-    background: gray;
+    background: #03213b;
     padding: 1em 0;
   }
 }
+
 .footer {
   z-index: 2;
   font-size: 20em;
   text-align: center;
-  padding-top: 1em;
-  background: gray;
+  background: #03213b;
   width: 100%;
   height: 5em;
   display: flex;
+
   .choice {
     flex: auto;
     height: 80%;
+    padding: 0.5em;
+
     img {
       height: inherit;
     }
@@ -47,15 +81,36 @@ html, body, #root, .App, .classPage{
 
 .voteboard {
   .body {
-    overflow:scroll;
+    overflow: scroll;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     .vote {
       position: relative;
       flex: auto;
       height: 120px;
       width: 120px;
+      max-width: 120px;
+
+      $profilePicSize: 108px;
+
+      .profileContainer {
+        .profilePic {
+          object-fit: contain;
+          width: 80%;
+          padding-left: 12px;
+          padding-top: 12px;
+
+          &--height {
+            height: $profilePicSize;
+          }
+
+          &--width {
+            width: $profilePicSize;
+          }
+        }
+      }
 
       .face, .overlay {
         height: inherit;
@@ -66,9 +121,11 @@ html, body, #root, .App, .classPage{
 
       .overlay {
         z-index: 1;
-        opacity: 0.7;
+        opacity: 1;
       }
     }
   }
 }
+
+
 

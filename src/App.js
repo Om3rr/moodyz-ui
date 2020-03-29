@@ -1,14 +1,23 @@
 import React from 'react';
 import './App.scss';
-import {getVotes} from './services/api_service'
 import ClassPage from "./pages/classPage";
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
+import UploadPage from "./pages/uploadPage";
 function App() {
-
-    getVotes(2).then(votes => console.log(votes));
     return (
         <div className="App" id="main">
-            <ClassPage classId={1}/>
+            <Router>
+                <Switch>
+                    <Route path="/classes/:id" children={<ClassPage/>} />
+                    <Route path="/upload" children={<UploadPage/>} />
+                </Switch>
+            </Router>
         </div>
     );
 }

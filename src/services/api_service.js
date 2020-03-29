@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export const getVotes = async () => {
+export const getStudents = async () => {
     try {
-        const {data: {votes}} = await axios.get(`/api/classes/today`);
+        const {data: {students}} = await axios.get(`/api/classes/me`);
 
-        console.log(`GET: Here's the list of todos`, votes);
+        console.log(`GET: Here's the list of todos`, students);
 
-        return votes;
+        return students;
     } catch (e) {
         console.error(e);
     }
@@ -14,22 +14,35 @@ export const getVotes = async () => {
 
 
 export const getChoices = async () => {
-    return [
-        {id: 1, src: "filters/filter1.jpeg"},
-        {id: 2, src: "filters/filter2.png"},
-        {id: 3, src: "filters/filter3.jpeg"}
-    ]
+    const choices = ["404", "die", "happy", "king", "sick"]
+    return choices.map((choiceStr, idx) => ({
+        id: idx,
+        src: `/filters/${choiceStr}.png`,
+        btn: `/filters/${choiceStr}btn.png`
+    }))
 }
 
 export const studentMe = async () => {
-    const {student} = await axios.get("/api/students/me")
+    const {data: {student}} = await axios.get("/api/students/me")
     return student
 }
 
 export const vote = async (choice) => {
-    const {data: {votes}} = await axios.post("/api/students/vote", {choice})
-    return votes
+    const {data: {students}} = await axios.post("/api/students/vote", {choice})
+    return students
 }
+
+
+export const uploadImage = async(image) => {
+    const formData = new FormData();
+    formData.append("image", image);
+    const {data} = await axios.post('/api/teachers/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+    })
+    return data
+};
 
 
 
