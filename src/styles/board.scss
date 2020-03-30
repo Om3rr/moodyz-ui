@@ -14,7 +14,7 @@ html, body, #root, .App, .classPage {
 
   .voteboard {
     flex: 1 1 0;
-    height: 80%;
+    min-height: 80%;
     overflow: scroll;
   }
 }
