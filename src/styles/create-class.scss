@@ -1,0 +1,54 @@
+.createClassPage {
+  font-size: 14em;
+}
+
+.circular {
+  display: inline-block;
+  position: relative;
+  width: 5em;
+  height: 5em;
+  overflow: hidden;
+  border-radius: 50%;
+
+  img {
+    width: auto;
+    height: 100%;
+    &.anon {
+      margin-left: -15px;
+    margin-top: 3px;
+    }
+  }
+
+}
+
+.students {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .lines-container {
+    max-height: 50em;
+    overflow: scroll;
+    width: 30%;
+
+    .student-line {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      &--face, &--button {
+        flex: 0 1 auto;
+      }
+
+      &--title {
+        flex: auto;
+        text-align: center;
+      }
+
+      &--button {
+        margin-right: 1em;
+      }
+    }
+  }
+}

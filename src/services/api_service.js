@@ -44,6 +44,11 @@ export const uploadImage = async(image) => {
     return data
 };
 
+export const apiAddStudent = async(newStudent) => {
+    const {data: {student}} = await axios.post("/api/students/", {student: newStudent});
+    return student
+}
+
 
 
 

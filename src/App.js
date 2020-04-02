@@ -9,12 +9,14 @@ import {
   useParams
 } from "react-router-dom";
 import UploadPage from "./pages/uploadPage";
+import CreateClassPage from "./components/createClassPage/page";
 function App() {
     return (
         <div className="App" id="main">
             <Router>
                 <Switch>
-                    <Route path="/classes/:id" children={<ClassPage/>} />
+                    <Route exact path="/" children={<ClassPage/>} />
+                    <Route exact path="/classes/new" children={<CreateClassPage/>} />
                     <Route path="/upload" children={<UploadPage/>} />
                 </Switch>
             </Router>

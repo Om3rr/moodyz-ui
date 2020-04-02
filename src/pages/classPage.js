@@ -12,7 +12,8 @@ const ClassPage = ({students, student, choices, loading, onChoice}) => {
     return (
         <div className={"classPage"}>
             <ClassPageHeader student={student}/>
-            {!loading ? <VoteBoard students={students} choices={choices}/> : null }
+            {!loading ? <VoteBoard students={students} choices={choices}/> : <div className="voteboard">
+                <div className="loader">Loading...</div></div> }
             <ClassPageFooter choices={choices} onChoice={onChoice}/>
         </div>
     )
