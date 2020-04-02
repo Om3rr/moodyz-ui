@@ -68,7 +68,7 @@ const StudentForm = ({onSave, canAddStudent, setName, name, onFileUpload, imgIsL
             {imgIsLoading ? <div className={"loader"}>Loading</div> : null}
             <div className={"circular"}>
                 {
-                    imgUploaded ? <img src={pictureDetails.url} onClick={onImgClick}/> : <img className={"anon"} src="/anon.png" onClick={onImgClick}/>
+                    imgUploaded ? <img src={pictureDetails.url} onClick={onImgClick}/> : <img className={"anon"} src="/anon.png" onClick={onImgClick} style={{display: imgIsLoading ? "none": 'block'}}/>
                 }
                 <input type="file" id={"fileUploader"} accept="image/*" multiple={false} onChange={onFileUpload} style={{display: "none"}}
                            disabled={imgIsLoading}/>
