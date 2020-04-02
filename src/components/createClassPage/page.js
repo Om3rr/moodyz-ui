@@ -8,7 +8,6 @@ import ClassForm from "./classForm";
 const ehnance = compose();
 const CreateClassPage = ({}) => {
     return (<div className={"createClassPage"}>
-        <div>Welcome to your new class</div>
         <ClassForm/>
 
     </div>)

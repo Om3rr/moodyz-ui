@@ -35,7 +35,6 @@ const ehnance = compose(
 const ClassForm = ({title, setTitle, students, removeStudent, addStudent}) => (
     <div className={"newClass"}>
         <div>
-            <span>Title</span> <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
             <div className={"students"}>
                 <div className={"lines-container"}>
                     <StudentForm addStudent={addStudent}/>
