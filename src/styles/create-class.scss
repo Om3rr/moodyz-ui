@@ -1,55 +1,158 @@
+.admin--header {
+  display: flex;
+  flex-direction: row;
+  background: black;
+  color: white;
+
+  &--right--block, &--left--block {
+    flex: auto;
+  }
+
+  &--right--block div, &--left--block div {
+    display: inline-block;
+    margin: 0 0.5em;
+    padding: 0.5em;
+
+    &.menu {
+      cursor: pointer;
+    }
+
+    &.selected {
+      background: white;
+      color: black;
+    }
+
+    &.hello {
+      margin-left: 2em;
+    }
+
+    svg {
+      margin: -0.1em 0.3em;
+    }
+  }
+}
+
 .createClassPage {
   font-size: 14em;
+  height: 100%;
+
 }
 
 .circular {
   display: inline-block;
   position: relative;
-  width: 5em;
-  height: 5em;
+  width: 2em;
+  height: 2em;
   overflow: hidden;
   border-radius: 50%;
+  svg {
+        position: absolute;
+    font-size: 1em;
+    padding: 0.5em;
+  }
 
   img {
     width: auto;
     height: 100%;
+
     &.anon {
-      margin-left: -15px;
-    margin-top: 3px;
+      margin-left: -7px;
+      margin-top: 3px;
     }
   }
 
 }
+.ClassesBody {
+  height: 100%;
+}
 
-.students {
+.classSelector {
+  display: flex;
+  flex-direction: row;
+  margin: 1em 0;
+  padding: 0 0.5em;
+  background: black;
+  color: white;
+  .add-class {
+      cursor: pointer;
+    }
+
+  div {
+    flex: 0 1 auto;
+
+    &.spacer {
+      flex: auto;
+    }
+
+    padding: 0.3em;
+
+    &.selected {
+      background: white;
+      color: black;
+    }
+  }
+}
+
+.Rtable {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 90%;
+  margin: 0 0 3em 0;
+  padding: 0;
+  overflow: scroll;
+  .loader {
+    margin: 0;
+      width: 2em;
+height: 2em;
+  }
 
-  .lines-container {
-    height: 100vh;
-    overflow: scroll;
-    width: 100%;
-      max-width: 300px;
+  &--row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+        border-bottom: black 1px solid;
+    &.last {
+      min-height: 2em;
+    }
 
-    .student-line {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-
-      &--face, &--button {
-        flex: 0 1 auto;
+    > div {
+      flex: auto;
+      box-sizing: border-box;
+      flex-grow: 1;
+      width: 100%; // Default to full width
+      padding: 0.8em 0.6em;
+      overflow: hidden; // Or flex might break
+      list-style: none;
+      border: solid 1px white;
+      &.no-grow {
+        width: 30%;
+        padding: 0.8em 0.4em;
       }
-
-      &--title {
-        flex: auto;
-        text-align: center;
-      }
-
-      &--button {
-        margin-right: 1em;
+      &.ten {
+        width: 5%;
+        padding: 0.8em .6em;
       }
     }
   }
+}
+
+
+.Rtable--2cols > .Rtable-cell {
+  width: 50%;
+}
+
+.Rtable--3cols > .Rtable-cell {
+  width: 33.33%;
+}
+
+.Rtable--4cols > .Rtable-cell {
+  width: 25%;
+}
+
+.Rtable--5cols > .Rtable-cell {
+  width: 20%;
+}
+
+.Rtable--6cols > .Rtable-cell {
+  width: 16.6%;
 }

@@ -1,20 +1,45 @@
 import React from 'react';
-import {compose} from 'recompose'
+import {compose, withState, withHandlers} from 'recompose'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FormattedMessage} from "react-intl";
+const copyTextToClipboard = ({student, setShowCopy}) => () => {
+    setShowCopy(false)
+    navigator.clipboard.writeText(student.url)
+    setTimeout(() => setShowCopy(true), 3000)
+}
 
-
-const ehnance = compose();
-const StudentEntry = ({student}) => {
-    return (<div className={"student-line"}>
-        <div className={"student-line--face"}>
+const ehnance = compose(
+    withState("showCopy", "setShowCopy", true),
+    withHandlers({copyTextToClipboard})
+);
+const StudentEntry = ({student, idx, copyTextToClipboard, showCopy, onDelete}) => {
+    return (<div className={"Rtable--row"}>
+        <div className={"Rtable--cell ten"}>{idx + 1}</div>
+        <div className={"student-line--face Rtable--cell no-grow"}>
             <div className={"circular"}>
                 <img src={student.face_url}/>
             </div>
         </div>
-        <div className={"student-line--title"}>
+        <div className={"student-line--title Rtable--cell"}>
             {student.name}
         </div>
-        <div className={"student-line--button"}>
-            <button>X</button>
+        <div className={"Rtable--cell"}>
+            <FormattedMessage id={`gender.${student.gender}`}/>
+        </div>
+        <div>
+            {
+                showCopy ?
+                    <button onClick={copyTextToClipboard}>
+                        <FormattedMessage id={"copy"}/>
+                    </button> :
+                    <div>
+                        <FormattedMessage id={"copied"}/>
+                    </div>
+            }
+
+        </div>
+        <div className={"student-line--button Rtable--cell"} onClick={onDelete}>
+            <FontAwesomeIcon icon={["fas", "trash"]}/>
         </div>
     </div>)
 }

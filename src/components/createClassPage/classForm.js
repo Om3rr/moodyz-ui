@@ -1,16 +1,17 @@
 import React from 'react';
-import {compose, lifecycle, withHandlers, withState} from 'recompose'
+import {compose, lifecycle, withHandlers, withPropsOnChange, withState} from 'recompose'
 import StudentForm from "./studentForm";
 import StudentEntry from "./studentEntry";
-import {getStudents} from "../../services/api_service";
+import {apiDeleteStudent, teacherGetClass} from "../../services/api_service";
+import {FormattedMessage} from "react-intl";
 
 
 const addStudent = ({setStudents, students}) => async (newStudent) => {
     setStudents([newStudent, ...students])
 }
 
-const init = ({setStudents}) => async () => {
-    const students = await getStudents()
+const init = ({slug, setStudents}) => async () => {
+    const {students} = await teacherGetClass(slug);
     setStudents(students.reverse())
 }
 
@@ -21,31 +22,34 @@ const ehnance = compose(
         init,
         addStudent,
         removeStudent: ({setStudents, students}) => (studentToDelete) => {
+            if(!window.confirm("Are you sure you want to delete this student?")) {
+                return
+            }
             const idx = students.findIndex(student => student.name === studentToDelete.name);
             students.splice(idx, 1);
+            apiDeleteStudent(studentToDelete);
             setStudents(students);
         }
     }),
-    lifecycle({
-        componentDidMount() {
-            this.props.init()
-        }
-    })
+    withPropsOnChange(["slug"], ({init}) => init()),
 );
-const ClassForm = ({title, setTitle, students, removeStudent, addStudent}) => (
-    <div className={"newClass"}>
-        <div>
-            <div className={"students"}>
-                <div className={"lines-container"}>
-                    <StudentForm addStudent={addStudent}/>
-                {
-                    students.map(student => (
-                        <StudentEntry key={student.name} student={student} onDelete={() => removeStudent(student)}/>
-                    ))
-                }
-                </div>
-            </div>
+const ClassForm = ({title, setTitle, students, removeStudent, addStudent, slug}) => (
+    <div className={"Rtable"}>
+        <div className={"Rtable--head Rtable--row"}>
+            <div className={"ten"}></div>
+            <div className={"no-grow"}></div>
+            <div><FormattedMessage id={"table.name"}/></div>
+            <div><FormattedMessage id={"table.gender"}/></div>
+            <div><FormattedMessage id={"table.link"}/></div>
+            <div></div>
         </div>
+        <StudentForm addStudent={addStudent} klassSlug={slug}/>
+        {
+            students.map((student, idx) => (
+                <StudentEntry key={idx} idx={idx} student={student} onDelete={() => removeStudent(student)}/>
+            ))
+        }
+        <div className={"Rtable--row last"}></div>
 
     </div>
 )

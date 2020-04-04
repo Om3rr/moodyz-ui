@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import ClassPage from "./pages/classPage";
+import './helpers/IconLoader'
 import {
   BrowserRouter as Router,
   Switch,

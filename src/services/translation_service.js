@@ -8,6 +8,6 @@ export function currentLanguage() {
 
 export function currentStrings() {
     return {
-
+        "header.hello": "Hello {name}"
     }
 }

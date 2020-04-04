@@ -12,6 +12,16 @@ export const getStudents = async () => {
     }
 };
 
+export const teacherGetClass = async (classSlug) =>{
+    const {data: {students, klass}} = await axios.get(`/api/teachers/classes/${classSlug}`);
+    return {students, klass}
+}
+
+export const teacherMe = async () => {
+    const {data: {teacher, klasses}} = await axios.get(`/api/teachers/me`);
+    return {teacher, klasses}
+}
+
 
 export const getChoices = async () => {
     const choices = ["404", "die", "happy", "king", "sick"]
@@ -44,9 +54,19 @@ export const uploadImage = async(image) => {
     return data
 };
 
-export const apiAddStudent = async(newStudent) => {
-    const {data: {student}} = await axios.post("/api/students/", {student: newStudent});
+export const apiAddStudent = async(klassSlug, newStudent) => {
+    const {data: {student}} = await axios.post(`/api/teachers/classes/${klassSlug}/students`, {student: newStudent});
     return student
+}
+
+export const apiDeleteStudent = async(student) => {
+    await axios.delete(`/api/teachers/students/${student.id}`)
+}
+
+
+export const apiCreateKlass = async(klass) => {
+    const {data: {klass: klassResp}} = await axios.post("/api/classes/", {klass})
+    return klassResp
 }
 
 
