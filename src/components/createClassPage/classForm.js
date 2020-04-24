@@ -22,7 +22,7 @@ const ehnance = compose(
         init,
         addStudent,
         removeStudent: ({setStudents, students}) => (studentToDelete) => {
-            if(!window.confirm("Are you sure you want to delete this student?")) {
+            if (!window.confirm("Are you sure you want to delete this student?")) {
                 return
             }
             const idx = students.findIndex(student => student.name === studentToDelete.name);
@@ -33,15 +33,22 @@ const ehnance = compose(
     }),
     withPropsOnChange(["slug"], ({init}) => init()),
 );
-const ClassForm = ({title, setTitle, students, removeStudent, addStudent, slug}) => (
+
+const renderClassesHeaderFields = () => (
+    <>
+        <div><FormattedMessage id={"table.gender"}/></div>
+        <div><FormattedMessage id={"table.link"}/></div>
+        <div></div>
+    </>
+)
+
+const ClassForm = ({currentMenu, students, removeStudent, addStudent, slug}) => (
     <div className={"Rtable"}>
         <div className={"Rtable--head Rtable--row"}>
             <div className={"ten"}></div>
             <div className={"no-grow"}></div>
             <div><FormattedMessage id={"table.name"}/></div>
-            <div><FormattedMessage id={"table.gender"}/></div>
-            <div><FormattedMessage id={"table.link"}/></div>
-            <div></div>
+            {renderClassesHeaderFields()}
         </div>
         <StudentForm addStudent={addStudent} klassSlug={slug}/>
         {

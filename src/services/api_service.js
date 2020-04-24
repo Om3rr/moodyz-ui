@@ -12,6 +12,10 @@ export const getStudents = async () => {
     }
 };
 
+export const apiLogin = async({username, password}) => {
+    const {data} = await axios.post("/api/login", {username, password})
+}
+
 export const teacherGetClass = async (classSlug) =>{
     const {data: {students, klass}} = await axios.get(`/api/teachers/classes/${classSlug}`);
     return {students, klass}
@@ -22,13 +26,18 @@ export const teacherMe = async () => {
     return {teacher, klasses}
 }
 
-
+ const colors = ["#b718f6",
+"#dac657",
+"#c64444",
+"#aac873",
+"#5879a0"]
 export const getChoices = async () => {
-    const choices = ["404", "die", "happy", "king", "sick"]
+    const choices = ["404", "die", "happy", "king", "sick", "404", "die", "happy", "king", "sick", "404", "die", "happy", "king", "sick", "404", "die", "happy", "king", "sick"]
     return choices.map((choiceStr, idx) => ({
         id: idx,
         src: `/filters/${choiceStr}.png`,
-        btn: `/filters/${choiceStr}btn.png`
+        btn: `/filters/${choiceStr}btn.png`,
+        color: colors[idx % 5]
     }))
 }
 
@@ -70,7 +79,10 @@ export const apiCreateKlass = async(klass) => {
 }
 
 
-export const apiGetAnalytics = async(klass, from_ts, to_ts) => {
+export const apiGetAnalytics = async(klass, fromDate, toDate) => {
+    const from_ts = Math.round(fromDate.getTime() / 1000);
+    const to_ts = Math.round(toDate.getTime() / 1000);
+
     const {data} = await axios.get(`/api/classes/${klass}/analytics`, {params: {from_ts, to_ts}});
     return data
 }

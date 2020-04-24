@@ -2,12 +2,21 @@ import React from 'react';
 import {compose, lifecycle, withHandlers, withState, withPropsOnChange} from 'recompose'
 import ClassSelector from "./ClassSelector";
 import ClassForm from "./classForm";
+import AnalyticsBody from "./AnalyticsBody";
 
-const ClassesBody = ({currentClass, setCurrentClass, klasses, initTeacher}) => {
+
+const renderBody = (slug, currentMenu) => {
+    if(!slug) {
+        return null
+    }
+    return currentMenu === "classes" ? (<ClassForm slug={slug}/>) : (<AnalyticsBody slug={slug}/>)
+}
+
+const ClassesBody = ({currentClass, currentMenu, setCurrentClass, klasses, initTeacher}) => {
     return (
         <div className={"ClassesBody"}>
             <ClassSelector {...{currentClass, setCurrentClass, klasses, initTeacher}}/>
-            {currentClass.slug ? <ClassForm slug={currentClass.slug}/> : null}
+            {renderBody(currentClass.slug, currentMenu)}
         </div>
     )
 }

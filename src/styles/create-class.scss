@@ -124,12 +124,25 @@ height: 2em;
       overflow: hidden; // Or flex might break
       list-style: none;
       border: solid 1px white;
+      &.votes-container {
+        display: flex;
+        flex-direction: row;
+        .block-vote {
+        padding: 1em;
+          flex: auto;
+          &:hover {
+            opacity: 0.5;
+            transition: opacity 0.2s;
+          }
+      }
+      }
+
       &.no-grow {
         width: 30%;
         padding: 0.8em 0.4em;
       }
       &.ten {
-        width: 5%;
+        width: 9%;
         padding: 0.8em .6em;
       }
     }

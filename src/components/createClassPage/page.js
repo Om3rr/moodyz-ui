@@ -4,6 +4,7 @@ import ClassForm from "./classForm";
 import {teacherMe} from "../../services/api_service";
 import PageHeader from "./PageHeader";
 import ClassesBody from "./ClassesBody";
+import {withRouter} from "react-router";
 
 
 const initTeacher = ({setTeacher, setKlasses}) => async () => {
@@ -12,31 +13,43 @@ const initTeacher = ({setTeacher, setKlasses}) => async () => {
     setKlasses(klasses);
 
 }
+const onMenuChange = ({history, setCurrentMenu}) => (menuValue) => {
+    history.push(`/${menuValue}`)
+    setCurrentMenu(menuValue)
+}
+
+const onExit = () => () => {
+    document.cookie = ''
+    window.location = "/login"
+}
 
 const ehnance = compose(
     withState("teacher", "setTeacher", {}),
     withState("klasses", "setKlasses", []),
-    withState("currentMenu", "setCurrentMenu", 'classes'),
-    withHandlers({initTeacher}),
+    withState("currentMenu", "setCurrentMenu", ({match: {params: {path}}}) => path),
+    withHandlers({initTeacher, onMenuChange, onExit}),
     lifecycle({
         componentDidMount() {
-            this.props.initTeacher();
+            const {setCurrentMenu, initTeacher, match: {params: {path}}} = this.props;
+            initTeacher();
+            setCurrentMenu(path)
         }
     }));
-const CreateClassPage = ({klasses, teacher, setCurrentMenu, currentMenu, initTeacher}) => {
+const CreateClassPage = ({klasses, teacher, onMenuChange, currentMenu, initTeacher, onExit}) => {
     return (<div className={"createClassPage"} >
         <PageHeader teacher={teacher}
+                    onExit={onExit}
                     currentMenu={currentMenu}
-                    onAnalytics={() => setCurrentMenu("analytics")}
-                    onClasses={() => setCurrentMenu("classes")}
+                    onAnalytics={() => onMenuChange("analytics")}
+                    onClasses={() => onMenuChange("classes")}
         />
 
-        { currentMenu === 'classes' ? <ClassesBody {...{klasses, initTeacher}}/> : null}
+        <ClassesBody {...{klasses, initTeacher, currentMenu}}/>
 
     </div>)
 }
 
-export default ehnance(CreateClassPage)
+export default ehnance(withRouter(CreateClassPage))
 
 
 

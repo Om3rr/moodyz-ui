@@ -22,7 +22,7 @@ const ClassSelector = ({currentClass, klasses, createKlass, setCurrentClass}) =>
     )
 }
 
-const createKlass = ({klasses, setKlasses, initTeacher}) => async () => {
+const createKlass = ({initTeacher}) => async () => {
     const klassName = window.prompt("Class name:")
     if(!klassName) {
         return
