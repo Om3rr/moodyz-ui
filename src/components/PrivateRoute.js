@@ -8,21 +8,21 @@ export const PrivateRoute = ({component, ...rest}) => (
     <Route {...rest} render={(props) => (
         AuthService.isAuthenticated() === true
             ? <Component {...props} />
-            : <Redirect to='/login'/>
+            : <Redirect to='/signin'/>
     )}/>
 );
 
 export const TeacherRoute = ({component, ...rest}) => (
     <Route {...rest} render={(props) => (
         isTeacher() ? <Component {...props} />
-            : <Redirect to='/login'/>
+            : <Redirect to='/signin'/>
     )}/>
 )
 
 export const StudentRoute = ({component, ...rest}) => (
     <Route {...rest} render={(props) => (
         isStudent() ? <Component {...props} />
-            : <Redirect to='/login'/>
+            : <Redirect to='/signin'/>
     )}/>
 )
 

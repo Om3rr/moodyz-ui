@@ -69,7 +69,7 @@ const enhance = compose(
 	}),
 );
 const LoginPage = ({isAuthenticated, ...rest}) => {
-    return isAuthenticated ? (<Redirect to={"/classes"}/>) : (<SignUpContainer title={"Moodyz"} {...rest}/>)
+    return isAuthenticated ? (<Redirect to={"/classes"}/>) : (<SignUpContainer title={"MoojiBoard"} {...rest}/>)
 }
 
 

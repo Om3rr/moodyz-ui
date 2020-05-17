@@ -36,7 +36,7 @@ function App({loading}) {
             <Router>
                 <Switch>
                     <Route exact path="/" component={ClassPage}/>
-                    <Route exact path="/login" component={LoginPage}/>
+                    <Route exact path="/signin" component={LoginPage}/>
                     <Route path="/upload" component={UploadPage}/>
                     <Route exact path="/wait" component={WaitPage}/>
                     <Route exact path="/:path" component={CreateClassPage}/>

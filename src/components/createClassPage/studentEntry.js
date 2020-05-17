@@ -1,9 +1,13 @@
 import React from 'react';
 import {compose, withState, withHandlers} from 'recompose'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {FormattedMessage} from "react-intl";
-const copyTextToClipboard = ({student, setShowCopy}) => () => {
+
+const copyTextToClipboard = ({student, setShowCopy}) => async () => {
     setShowCopy(false)
+    await navigator.permissions.query({
+        name: 'clipboard-write'
+    })
     navigator.clipboard.writeText(student.url)
     setTimeout(() => setShowCopy(true), 3000)
 }

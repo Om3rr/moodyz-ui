@@ -1,13 +1,8 @@
 export const languages = {}
 export const strings = {}
 
-
-export function currentLanguage() {
-    return 'en-US'
-}
-
-export function currentStrings() {
-    return {
+const LANGS = {
+    "he": {
         "header.hello": "שלום {name}",
         "gender.male": "זכר",
         "gender.female": "נקבה",
@@ -17,6 +12,27 @@ export function currentStrings() {
         "copy": "העתק",
         "classes": "כיתות",
         "analytics": "אנליטיקה",
-        "student.name": "שם התלמיד"
+        "student.name": "שם התלמיד",
+        "copied": "הועתק"
+    },
+    "en": {
+        "header.hello": "hello {name}",
+        "gender.male": "male",
+        "gender.female": "female",
+        "table.name": "name",
+        "table.gender": "gender",
+        "table.link": "link",
+        "copy": "copy",
+        "classes": "classes",
+        "analytics": "analytics",
+        "student.name": "student name",
+        "copied": "Copied"
     }
+}
+export function currentLanguage() {
+    return 'en-US'
+}
+
+export function currentStrings() {
+    return LANGS.en
 }

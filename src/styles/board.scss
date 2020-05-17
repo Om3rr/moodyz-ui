@@ -69,10 +69,14 @@ html, body, #root, .App, .classPage {
   .choice {
     flex: auto;
     height: 80%;
-    padding: 0.5em;
-
-    img {
-      height: inherit;
+    padding: 1em 0.3em;
+    button {
+      font-size: 2em;
+      background: none;
+      border: none;
+      &:focus {
+        outline: none;
+      }
     }
   }
 }
@@ -119,8 +123,21 @@ html, body, #root, .App, .classPage {
 
       .overlay {
         z-index: 1;
-        opacity: 1;
+        width: 80%;
+        height: 80%;
+        border-radius: 200em;
+        opacity: 0.5;
+        margin-left: 12px;
+        margin-top: 12px;
       }
+      .emoji {
+          position: absolute;
+          z-index: 2;
+          font-size: 30px;
+          opacity: 1;
+          bottom: 5px;
+          right: 10px;
+        }
     }
   }
 }

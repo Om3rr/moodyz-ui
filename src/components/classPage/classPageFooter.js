@@ -9,18 +9,7 @@ const ClassPageFooter = ({onChoice, choices}) => {
                 <Choice
                     key={choice.id}
                     onChoice={onChoice}
-                    src={choice.btn}
-                    id={choice.id}
-                />
-            ))
-        }
-        {
-            choices.map((choice) => (
-                <Choice
-                    key={choice.id}
-                    onChoice={onChoice}
-                    src={choice.btn}
-                    id={choice.id}
+                    {...choice}
                 />
             ))
         }

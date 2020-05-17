@@ -4,9 +4,6 @@ import {getStudents, studentMe, vote, getChoices} from "../services/api_service"
 import VoteBoard from "../components/classPage/VoteBoard";
 import ClassPageHeader from "../components/classPage/classPageHeader";
 import ClassPageFooter from "../components/classPage/classPageFooter";
-import {
-  useParams
-} from "react-router";
 
 const ClassPage = ({students, student, choices, loading, onChoice}) => {
     return (
@@ -20,14 +17,12 @@ const ClassPage = ({students, student, choices, loading, onChoice}) => {
 };
 
 const onChoice = ({setStudents}) => async (choice) => {
-    console.log("ON CHOICE!");
     const votes = await vote(choice);
     setStudents(votes)
 }
 
 const init = ({setChoices, setStudent, setStudents}) => async () => {
     const promiseRes = await Promise.all([getChoices(), studentMe(), getStudents()]);
-    console.log(promiseRes)
     setChoices(promiseRes[0]);
     setStudent(promiseRes[1]);
     setStudents(promiseRes[2]);

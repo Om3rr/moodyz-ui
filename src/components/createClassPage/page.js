@@ -20,7 +20,7 @@ const onMenuChange = ({history, setCurrentMenu}) => (menuValue) => {
 
 const onExit = () => () => {
     document.cookie = ''
-    window.location = "/login"
+    window.location = "/signin"
 }
 
 const ehnance = compose(
