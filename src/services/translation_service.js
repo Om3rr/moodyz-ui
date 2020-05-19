@@ -30,9 +30,9 @@ const LANGS = {
     }
 }
 export function currentLanguage() {
-    return 'en-US'
+    return 'he-IL'
 }
 
 export function currentStrings() {
-    return LANGS.en
+    return LANGS.he
 }

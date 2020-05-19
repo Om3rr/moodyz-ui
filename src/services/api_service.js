@@ -29,14 +29,16 @@ export const teacherMe = async () => {
 
 export const getChoices = async () => {
     const happyMojis = [
-        "🤩", "😘", "😍", "😊", "🥰", "😎", "🥳", "😝", "🤣", "🤗", "🤓"
+        "🙂"
     ];
-    const scaredMojis = ["😈", "😳", "😯", "😱", "👾"]
+    const scaredMojis = ["😬"]
     const sadMojis = [];
     const suprisedMojis = ["😲"];
-    const optiMoji = ["🌻", "😺"];
-    const boredMoji = ["🙇‍️", "🤷", "👩‍🍳", "👸"];
-    const angryMoji = ["😡", "🤬", "👺", "😾"];
+    const passiMoji = ["😔"];
+    const loveMoji = ["🥰"];
+    const optiMoji = ["🙂"];
+    const boredMoji = ["😦"];
+    const angryMoji = ["😡"];
     return [
         ...mapMojis(happyMojis, "#eec16c", 0),
         ...mapMojis(sadMojis, "#306d93", 1),
@@ -45,6 +47,8 @@ export const getChoices = async () => {
         ...mapMojis(optiMoji, "#ffffff", 4),
         ...mapMojis(boredMoji, "#9b9b9b", 5),
         ...mapMojis(angryMoji, "#e76c6c", 6),
+        ...mapMojis(passiMoji, "#306d93", 7),
+        ...mapMojis(loveMoji, "#ee8fe8", 8),
     ]
 }
 
