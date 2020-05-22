@@ -8,7 +8,7 @@ const Vote = ({choice, choices, picture}) => {
         <div className={"vote"}>
             {filter ? <VoteFilter filter={filter}/> : null}
             <div className={"profileContainer"}>
-                <img className={"profilePic"} src={picture}/>
+                <img className={"profilePic"} src={picture || "/avatar.png"}/>
             </div>
 
         </div>

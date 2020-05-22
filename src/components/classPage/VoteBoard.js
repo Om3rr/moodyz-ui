@@ -3,7 +3,6 @@ import {compose, lifecycle, withState} from 'recompose'
 import Vote from "./VoteBoard/Vote";
 
 const VoteBoard = ({students, choices}) => {
-    const facesMap = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "a", "b", "c", "d", "e", "f", "g", "h", "i"];
     return (
         <div className="voteboard">
             <div className="body">
