@@ -39,7 +39,7 @@ const StudentEntry = ({student, imgLoading, idx, copyTextToClipboard, showCopy, 
         <div className={"Rtable--cell ten"}>{idx + 1}</div>
         <div className={"student-line--face Rtable--cell no-grow"}>
             <div className={"circular"}>
-                <img src={student.face_url} onClick={clickUploadImage} className={imgLoading ? "disabled": ""}/>
+                <img src={student.face_url || "/avatar.png"} onClick={clickUploadImage} className={imgLoading ? "disabled": ""}/>
                 <input type="file" id={`fileuploader-${student.id}`} accept="image/*"
                        multiple={false}
                        onChange={onFileUpload}
