@@ -52,7 +52,7 @@ const ehnance = compose(
         ["name", "imgUploaded"],
         ({name, imgUploaded}) => (
             {
-                canAddStudent: name && imgUploaded
+                canAddStudent: name
             }
         )
     ),

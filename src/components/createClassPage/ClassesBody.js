@@ -5,14 +5,18 @@ import ClassForm from "./classForm";
 import AnalyticsBody from "./AnalyticsBody";
 
 
-const renderBody = (slug, currentMenu) => {
+const renderBody = ({refreshTeacher}) => (slug, currentMenu) => {
     if(!slug) {
         return null
     }
-    return currentMenu === "classes" ? (<ClassForm slug={slug}/>) : (<AnalyticsBody slug={slug}/>)
+    return currentMenu === "classes" ? (<ClassForm slug={slug} refreshTeacher={refreshTeacher}/>) : (<AnalyticsBody slug={slug}/>)
 }
 
-const ClassesBody = ({currentClass, currentMenu, setCurrentClass, klasses, initTeacher}) => {
+const refreshTeacher = ({initTeacher}) => () => {
+    initTeacher()
+}
+
+const ClassesBody = ({currentClass, currentMenu, setCurrentClass, klasses, initTeacher, renderBody}) => {
     return (
         <div className={"ClassesBody"}>
             <ClassSelector {...{currentClass, setCurrentClass, klasses, initTeacher}}/>
@@ -23,6 +27,10 @@ const ClassesBody = ({currentClass, currentMenu, setCurrentClass, klasses, initT
 
 const enhance = compose(
     withState("currentClass", "setCurrentClass", {}),
+    withHandlers({renderBody}),
+    withHandlers({
+        refreshTeacher
+    }),
     withPropsOnChange(['klasses'], ({klasses, currentClass, setCurrentClass}) => {
         console.log("ON KLASS CHANGE", klasses, currentClass)
         if (klasses.length > 0 && currentClass && !currentClass.slug) {

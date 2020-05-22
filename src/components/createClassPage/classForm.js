@@ -42,7 +42,7 @@ const renderClassesHeaderFields = () => (
     </>
 )
 
-const ClassForm = ({currentMenu, students, removeStudent, addStudent, slug}) => (
+const ClassForm = ({currentMenu, students, removeStudent, addStudent, slug, init}) => (
     <div className={"Rtable"}>
         <div className={"Rtable--head Rtable--row"}>
             <div className={"ten"}></div>
@@ -53,7 +53,7 @@ const ClassForm = ({currentMenu, students, removeStudent, addStudent, slug}) => 
         <StudentForm addStudent={addStudent} klassSlug={slug}/>
         {
             students.map((student, idx) => (
-                <StudentEntry key={idx} idx={idx} student={student} onDelete={() => removeStudent(student)}/>
+                <StudentEntry key={idx} idx={idx} student={student} onDelete={() => removeStudent(student)} refresh={init}/>
             ))
         }
         <div className={"Rtable--row last"}></div>

@@ -78,6 +78,11 @@ export const uploadImage = async(image) => {
     return data
 };
 
+export const updateStudent = async(studentId, picture, name) => {
+    const {data} = await axios.put(`/api/teachers/students/${studentId}`, {picture, name})
+    return data.student;
+};
+
 export const apiAddStudent = async(klassSlug, newStudent) => {
     const {data: {student}} = await axios.post(`/api/teachers/classes/${klassSlug}/students`, {student: newStudent});
     return student

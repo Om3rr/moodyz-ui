@@ -54,6 +54,10 @@
   img {
     width: auto;
     height: 100%;
+    &.disabled {
+      opacity: 0.5;
+      cursor: progress;
+    }
 
     &.anon {
       margin-left: -7px;
